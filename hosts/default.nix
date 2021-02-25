@@ -66,7 +66,7 @@ let
                   exact = true;
                   from = nodes.nixos.original;
                   to = {
-                    inherit (nixos) lastModified narHash rev;
+                    inherit (nixos) narHash;
 
                     path = override.outPath;
                     type = "path";
@@ -77,7 +77,7 @@ let
                   exact = true;
                   from = nodes.override.original;
                   to = {
-                    inherit (override) lastModified narHash rev;
+                    inherit (override) narHash;
 
                     path = override.outPath;
                     type = "path";
