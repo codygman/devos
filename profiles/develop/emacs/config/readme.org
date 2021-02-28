@@ -112,7 +112,7 @@ modus-vivendi-theme
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 ** TODO layout redo/undo with winner mode                       :superpower:
-    #+begin_src emacs-lisp
+    #+begin_src emacs-lisp :noweb-ref winner-use-package :tangle no
       (use-package winner
         :config
         (winner-mode 1)
@@ -850,7 +850,7 @@ You'd never want to be without it after!
    #+end_src
 ** aliases
   :PROPERTIES:
-  :header-args: :tangle eshell/alias
+  :header-args: :tangle eshell/alias :mkdirp true
   :END:
 *** =gs=
 #+begin_src emacs-lisp 
@@ -1582,6 +1582,12 @@ browser.link.open_newwindow.restriction
          browser.link.open_newwindow
          and change the value to 1 (one) 
        #+end_example
+
+** winner
+
+    #+begin_src emacs-lisp :noweb yes
+      <<winner-use-package>>
+    #+end_src
 ** org
 
     #+begin_src emacs-lisp :noweb yes
