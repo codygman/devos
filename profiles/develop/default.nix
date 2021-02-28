@@ -9,15 +9,19 @@
     EDITOR = "emacs";
     VISUAL = "emacs";
   };
-  
+
   networking.extraHosts = ''
     127.0.0.1 api.itpro.test
   '';
 
   environment.systemPackages = with pkgs; [
+    # work
     docker-compose
     dbeaver
     robo3t
+    sqlite # for org-roam, so for work/personal really
+    teams # should go somewhere else? work.im maybe?
+
     firefox
     file
     gnupg
@@ -27,6 +31,8 @@
     vim
     kitty
   ];
+
+  services.spotifyd.enable = true;
 
   fonts = {
     # fonts = [ pkgs.dejavu_nerdfont ];
