@@ -9,17 +9,14 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   #boot.extraModulePackages = [ ];
 
-  boot.loader.grub.useOSProber = true;
-  boot.supportedFilesystems = [ "ntfs" ];
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.efiSupport = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
+  services.xserver.videoDrivers = [ "nvidia" ];
+
 
   fileSystems."/" =
     {
