@@ -1,0 +1,5 @@
+{ ... }: {
+  programs.mosh = {
+    enable = true;
+  };
+}

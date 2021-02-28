@@ -3,3 +3,12 @@ up
 hosts/up-*
 .direnv
 book
+/hosts/NixOS-files/
+/hosts/razer-configuration.nix
+/profiles/develop/emacs/config/.org-id-locations
+/profiles/develop/emacs/config/eshell
+/profiles/develop/emacs/config/readme.el
+/profiles/develop/emacs/config/recentf
+/profiles/develop/emacs/config/transient
+/profiles/develop/emacs/config/var
+/profiles/develop/emacs/config/tmp

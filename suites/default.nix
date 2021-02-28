@@ -16,7 +16,8 @@ let
 
 
   suites = with profiles; rec {
-    base = [ users.nixos users.root ];
+    core = [ users.cody users.root ];
+    remotedev = core ++ [ graphical.im mosh ssh graphical develop ];
   };
 in
 mapAttrs (_: v: profileMap v) suites // {
