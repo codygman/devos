@@ -112,6 +112,21 @@ modus-vivendi-theme
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 ** TODO layout redo/undo with winner mode                       :superpower:
+    #+begin_src emacs-lisp
+      (use-package winner
+        :config
+        (winner-mode 1)
+        :general
+        (my-leader-def
+          :states '(normal visual emacs motion)
+          :prefix "SPC"
+          :keymaps 'override
+          :non-normal-prefix "M-SPC"
+          :prefix "SPC"
+          "wu" '(winner-undo :which-key "Winner Undo")
+          "wr" '(winner-redo :which-key "Winner Redo")
+          ))
+    #+end_src
 ** TODO rainbow delimiters
 #+begin_src nix :noweb-ref emacs-package :tangle no
 rainbow-delimiters
