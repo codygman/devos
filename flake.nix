@@ -4,8 +4,8 @@
   inputs =
     {
       override.url = "nixpkgs";
-      nixos.url = "nixpkgs/release-20.09";
-      home.url = "github:nix-community/home-manager/release-20.09";
+      nixos.url = "nixpkgs/nixos-unstable";
+      home.url = "github:nix-community/home-manager/master";
       home.inputs.nixpkgs.follows = "nixos";
       utils.url = "github:numtide/flake-utils/flatten-tree-system";
       devshell.url = "github:numtide/devshell";
