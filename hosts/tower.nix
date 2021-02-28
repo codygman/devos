@@ -1,9 +1,15 @@
-{ suites, ... }:
+{ suites, config, ... }:
 {
   imports = suites.remotedev ++ [ ./tower-hardware-configuration.nix ];
 
-  boot.loader.systemd-boot.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+  boot.loader.grub.enable = true;
+  boot.loader.grub.useOSProber = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "nvidia" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
 
   # NOTE: won't this get set to the name of this file automatically by devos?
   # networking.hostName = "nixos"; # Define your hostname.
