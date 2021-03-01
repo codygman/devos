@@ -44,7 +44,7 @@ in
     windowManager.session = lib.singleton {
       name = "exwm";
       start = ''
-        emacs
+        ${pkgs.emacsGcc}/bin/emacs
       '';
     };
     libinput.enable = true;

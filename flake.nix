@@ -10,6 +10,7 @@
       utils.url = "github:numtide/flake-utils/flatten-tree-system";
       devshell.url = "github:numtide/devshell";
       nixos-hardware.url = "github:nixos/nixos-hardware";
+      emacs-overlay.url = "github:nix-community/emacs-overlay";
       ci-agent.url = "github:hercules-ci/hercules-ci-agent";
       ci-agent.inputs.nixos-20_09.follows = "nixos";
       ci-agent.inputs.nixos-unstable.follows = "override";
@@ -30,6 +31,7 @@
     inputs@{ ci-agent
     , deploy
     , devshell
+    , emacs-overlay
     , home
     , nixos
     , nixos-hardware
