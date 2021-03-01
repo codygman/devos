@@ -1,7 +1,7 @@
 { ... }:
 {
   home-manager.users.cody = {
-    imports = [ ../profiles/git ../profiles/direnv ];
+    imports = [ ../profiles/git ../profiles/direnv sops-nix.sops ];
   };
 
   users.users.cody = {
@@ -12,6 +12,8 @@
     extraGroups = [ "wheel" "docker" ];
   };
 
+
+  #sops.defaultSopsFile = "/home/.sops/secrets.yaml";
 
   users.users.cody.openssh.authorizedKeys.keyFiles = [
     ../../cody_razer_rsa.pub

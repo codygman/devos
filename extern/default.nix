@@ -6,6 +6,7 @@ in
   modules = [
     home.nixosModules.home-manager
     ci-agent.nixosModules.agent-profile
+    sops-nix.nixosModules.sops
   ];
 
   overlays = [

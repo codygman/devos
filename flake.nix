@@ -23,6 +23,7 @@
       naersk.inputs.nixpkgs.follows = "override";
       flake-compat.url = "github:BBBSnowball/flake-compat/pr-1";
       flake-compat.flake = false;
+      sops-nix.url = "github:Mic92/sops-nix";
       srcs.url = "path:./pkgs";
     };
 
@@ -37,6 +38,7 @@
     , override
     , self
     , utils
+    , sops-nix
     , ...
     }:
     let
