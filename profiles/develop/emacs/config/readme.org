@@ -1452,15 +1452,11 @@ https://hackage.haskell.org/package/lens-csv
 ** tangle overlay with emacs packages
 
  #+BEGIN_SRC nix :tangle ../../../../overlays/emacs.nix :noweb yes :mkdirp yes
- final: prev: {
-       emacs = final.lib.pipe prev.emacs [
-         final.emacsPackagesNgGen
-
-         (e: e.emacsWithPackages (p: with p; [
+final: prev: {
+      emacsGcc = final.lib.pipe (prev.emacsPackagesNgGen prev.emacsGcc).emacsWithPackages (epkgs: with epkgs; [
            <<emacs-package>>
-         ]))
-       ];
-     }
+
+]);}
  #+END_SRC
 
 ** tangle module with emacs system dependencies
