@@ -1,8 +1,12 @@
 final: prev: {
 
-  emacsGcc = (prev.emacsPackagesNgGen prev.emacsGcc).emacsWithPackages (epkgs: with epkgs; [
-     use-package
-     exwm
-   ]);
+      emacsGcc =
+	let
+	  memacs = prev.emacsGcc;
+	  myEmacsWithPackages =
+	  (prev.emacsPackagesNgGen memacs).emacsWithPackages;
+	in myEmacsWithPackages (e: with e; [
+	  use-package
+      ]);
 
 }
