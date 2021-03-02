@@ -20,16 +20,16 @@
     keyMap = "us";
   };
 
+  location.provider = "manual";
+  location.longitude = 32.7767;
+  location.latitude = -96.7970;
 
   services.redshift = {
     enable = true;
-    latitude = "32.7767";
-    longitude = "-96.7970";
     brightness = {
       day = "1.0";
       night = "0.7";
     };
-    provider = "manual";
     temperature = {
       day = 6500;
       night = 3801;

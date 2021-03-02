@@ -1,8 +1,11 @@
 final: prev: {
-      emacs = final.lib.pipe prev.emacs [
-        final.emacsPackagesNgGen
 
-        (e: e.emacsWithPackages (p: with p; [
+      emacsGcc =
+        let
+          package = prev.emacsGcc;
+          emacsPackages = prev.emacsPackagesNgGen package;
+          emacsWithPackages = emacsPackages.emacsWithPackages;
+        in emacsWithPackages (epkgs: with epkgs; [
           modus-operandi-theme
           modus-vivendi-theme
           rainbow-delimiters
@@ -16,8 +19,8 @@ final: prev: {
                             src = final.pkgs.fetchFromGitHub {
                               owner = "raxod502";
                               repo = "selectrum";
-                              rev = "af5d027681d18d10559c2cddefe57c5577bbd611";
-                              sha256 = "1hivf7avyn8dhsrqc695bpfmy4nc5bgm7cw37r423sgr9236j4l5";
+                              rev = "5e8df7ade82dfc023acefc7d2dfb2103d0c4959b";
+                              sha256 = "S5r+TSQe20HjLTvbM5fcMcj4TAReP0dbrxsx6ZpJ6n0=";
                             };
                           });
                         }) )
@@ -30,8 +33,8 @@ final: prev: {
                   src = final.pkgs.fetchFromGitHub {
                     owner = "minad";
                     repo = "consult";
-                    rev = "4b7830f620e93f74608abb537229f2034d95a40a";
-                    sha256 = "GndF7byORkiJdck1p2eblRo/XS9DT0/NZL1sBI/+Ikw=";
+                    rev = "f2bf17847dfb19852b0c4499e72ea29570b578bb";
+                    sha256 = "+62VWTTP48n7Tjv4Sr9pr/+guQTcisUkzJb64BhzOaQ=";
                   };
                 });
               }) )
@@ -68,6 +71,6 @@ final: prev: {
           #company
           exwm
           exwm-edit
-        ]))
-      ];
-    }
+        ]);
+
+}

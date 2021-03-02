@@ -15,6 +15,7 @@
       ci-agent.inputs.nixos-unstable.follows = "override";
       ci-agent.inputs.flake-compat.follows = "flake-compat";
       deploy.url = "github:serokell/deploy-rs";
+      emacs-overlay.url = "github:nix-community/emacs-overlay";
       deploy.inputs.utils.follows = "utils";
       deploy.inputs.naersk.follows = "naersk";
       deploy.inputs.nixpkgs.follows = "override";
@@ -30,6 +31,7 @@
     inputs@{ ci-agent
     , deploy
     , devshell
+    , emacs-overlay # necessary?
     , home
     , nixos
     , nixos-hardware
