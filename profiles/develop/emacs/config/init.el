@@ -11,7 +11,8 @@
     (let ((buffer-save-without-query t)) (save-buffer))
     (message "add-tangle-headers: saved buffer"))
 
-  (add-hook 'org-babel-post-tangle-hook 'add-tangle-headers)
+(add-hook 'org-babel-post-tangle-hook 'add-tangle-headers)
+(message "tangle headers such as lexical binding after babel tangle")
 
 ;; TODO don't hardcode this m8
 (org-babel-load-file "/home/cody/.emacs.d/readme.org")
