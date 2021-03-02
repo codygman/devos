@@ -1,5 +1,18 @@
 (require 'org)
 
+(defun add-tangle-headers ()
+    (message "adding tangle headers in %s" (buffer-file-name))
+    (cond
+     ((f-ext? (buffer-file-name) "el")
+      (goto-char (point-min))
+      (insert ";;; -*- lexical-binding: t -*-\n"))
+     (t nil))
+    (message "add-tangle-headers: saving buffer")
+    (let ((buffer-save-without-query t)) (save-buffer))
+    (message "add-tangle-headers: saved buffer"))
+
+  (add-hook 'org-babel-post-tangle-hook 'add-tangle-headers)
+
 ;; TODO don't hardcode this m8
 (org-babel-load-file "/home/cody/.emacs.d/readme.org")
 (custom-set-variables
