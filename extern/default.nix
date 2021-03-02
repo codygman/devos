@@ -10,6 +10,7 @@ in
 
   overlays = [
     nur.overlay
+    emacs-overlay.overlay
     devshell.overlay
     (final: prev: {
       deploy-rs = deploy.packages.${prev.system}.deploy-rs;

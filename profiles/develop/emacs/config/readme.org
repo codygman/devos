@@ -22,7 +22,7 @@
 
 * install emacs
 #+begin_src nix :noweb-ref emacs-system-dep :tangle no
-emacs
+emacsGcc
 #+end_src
 * Emacs appearance
 ** font
@@ -1451,16 +1451,19 @@ https://hackage.haskell.org/package/lens-csv
 * Weave/tangle nix overlays and emacs module
 ** tangle overlay with emacs packages
 
- #+BEGIN_SRC nix :tangle ../../../../overlays/emacs.nix :noweb yes :mkdirp yes
- final: prev: {
-       emacs = final.lib.pipe prev.emacs [
-         final.emacsPackagesNgGen
+ #+BEGIN_SRC nix :tangle ../../../../overlays/emacsGcc.nix :noweb yes :mkdirp yes
+final: prev: {
 
-         (e: e.emacsWithPackages (p: with p; [
-           <<emacs-package>>
-         ]))
-       ];
-     }
+      emacsGcc =
+        let
+          package = prev.emacsGcc;
+          emacsPackages = prev.emacsPackagesNgGen package;
+          emacsWithPackages = emacsPackages.emacsWithPackages;
+        in emacsWithPackages (epkgs: with epkgs; [
+          <<emacs-package>>
+        ]);
+
+}
  #+END_SRC
 
 ** tangle module with emacs system dependencies

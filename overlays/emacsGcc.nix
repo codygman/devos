@@ -1,8 +1,11 @@
 final: prev: {
-      emacs = final.lib.pipe prev.emacs [
-        final.emacsPackagesNgGen
 
-        (e: e.emacsWithPackages (p: with p; [
+      emacsGcc =
+        let
+          package = prev.emacsGcc;
+          emacsPackages = prev.emacsPackagesNgGen package;
+          emacsWithPackages = emacsPackages.emacsWithPackages;
+        in emacsWithPackages (epkgs: with epkgs; [
           modus-operandi-theme
           modus-vivendi-theme
           rainbow-delimiters
@@ -68,6 +71,6 @@ final: prev: {
           #company
           exwm
           exwm-edit
-        ]))
-      ];
-    }
+        ]);
+
+}

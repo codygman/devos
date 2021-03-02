@@ -72,6 +72,21 @@
         "type": "github"
       }
     },
+    "emacs-overlay": {
+      "locked": {
+        "lastModified": 1614560838,
+        "narHash": "sha256-JwHO1y9ZYCjVQz0hgkxzYvu7wi+m/Q+AgdOtDm3HsFA=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "5279bf7794f15f43bab3d6fbc9922bc6b1c49e30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -239,6 +254,7 @@
         "ci-agent": "ci-agent",
         "deploy": "deploy",
         "devshell": "devshell",
+        "emacs-overlay": "emacs-overlay",
         "flake-compat": "flake-compat",
         "home": "home",
         "naersk": "naersk",
