@@ -18,6 +18,7 @@ in
       dosfstools
       fd
       git
+      nix-prefetch-github
       git-crypt
       gotop
       gptfdisk
