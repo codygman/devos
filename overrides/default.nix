@@ -17,6 +17,7 @@
       nixFlakes
       qutebrowser
       signal-desktop
+      spotify
       starship;
 
     # haskellPackages = prev.haskellPackages.override {
