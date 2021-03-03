@@ -19,8 +19,8 @@ final: prev: {
                             src = final.pkgs.fetchFromGitHub {
                               owner = "raxod502";
                               repo = "selectrum";
-                              rev = "5e8df7ade82dfc023acefc7d2dfb2103d0c4959b";
-                              sha256 = "S5r+TSQe20HjLTvbM5fcMcj4TAReP0dbrxsx6ZpJ6n0=";
+                              rev = "38279bb74b41f235c37640f079ffdaf8332166e";
+                              sha256 = "oqWGw8gaqfge7j8iNySHfPat6nKCOXo+q2dWXIsZ0Pg=";
                             };
                           });
                         }) )
