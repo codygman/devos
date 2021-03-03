@@ -12,3 +12,7 @@ book
 /profiles/develop/emacs/config/transient
 /profiles/develop/emacs/config/var
 /profiles/develop/emacs/config/tmp
+/profiles/develop/emacs/config/auto-save-list/
+/profiles/develop/emacs/config/org-roam.db
+/profiles/develop/emacs/config/savehist
+/profiles/develop/emacs/config/tramp

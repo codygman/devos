@@ -18,19 +18,21 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/Chicago";
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.br-58c47fe7293f.useDHCP = true;
-  networking.interfaces.docker0.useDHCP = true;
   networking.interfaces.enp37s0.useDHCP = true;
-  networking.interfaces.vboxnet0.useDHCP = true;
-  networking.interfaces.vetha3492ef.useDHCP = true;
-  networking.interfaces.vethad8632f.useDHCP = true;
-  networking.interfaces.vethce366cf.useDHCP = true;
+
+  # no longer useful network interfaces?
+  # networking.interfaces.br-58c47fe7293f.useDHCP = true;
+  # networking.interfaces.docker0.useDHCP = true;
+  # networking.interfaces.vboxnet0.useDHCP = true;
+  # networking.interfaces.vetha3492ef.useDHCP = true;
+  # networking.interfaces.vethad8632f.useDHCP = true;
+  # networking.interfaces.vethce366cf.useDHCP = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
