@@ -21,8 +21,8 @@
   };
 
   location.provider = "manual";
-  location.longitude = 32.7767;
-  location.latitude = -96.7970;
+  location.latitude = 32.7767;
+  location.longitude = -96.7970;
 
   services.redshift = {
     enable = true;
