@@ -12,19 +12,6 @@ final: prev: {
               sha256 = "bA4d4DvBfobS+sZz6rfrYAVAX6ct8qqUO59LCghR+iQ=";
             };
           };
-          xwwp = emacsPackages.melpaBuild {
-            pname = "xwwp";
-            version = "rev-f67e070a6e1b233e60274deb717274b000923231";
-            src = fetchGit {
-              url = "https://github.com/canatella/xwwp.git";
-              rev = "f67e070a6e1b233e60274deb717274b000923231";
-            };
-            packageRequires = with emacsPackages; [
-            ];
-            recipe = prev.writeText "recipe" ''
-              (xwwp :repo "canatella/xwwp" :fetcher github)
-            '';
-          };
         in emacsWithPackages (epkgs: with epkgs; [
           modus-operandi-theme
           modus-vivendi-theme
