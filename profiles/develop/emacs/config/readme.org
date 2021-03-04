@@ -148,7 +148,8 @@ rainbow-delimiters
 #+end_src
 
 
-#+begin_src nix :noweb-ref emacs-package :tangle no
+#+begin_src nix
+# :noweb-ref emacs-package :tangle no
 ghcid-el
 #+end_src
 
