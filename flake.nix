@@ -3,7 +3,7 @@
 
   inputs =
     {
-      override.url = "nixpkgs";
+      override.url = "nixpkgs/master";
       nixos.url = "nixpkgs/nixos-unstable";
       home.url = "github:nix-community/home-manager/master";
       home.inputs.nixpkgs.follows = "nixos";

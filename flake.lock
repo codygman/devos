@@ -222,14 +222,16 @@
     },
     "override": {
       "locked": {
-        "lastModified": 1613354882,
-        "narHash": "sha256-V3j1rA4a3Lzf5pdbFHzs9jUcOKB91MFO3X8nMY+lK5c=",
-        "path": "/nix/store/dxl4kb7jclicnk2mignizz53bk8wl9z4-source",
-        "rev": "77ffc4c2413dc4e1d269e1ec65d4b005188f8536",
-        "type": "path"
+        "lastModified": 1614870403,
+        "narHash": "sha256-2ozvSGUmwBzxKkduynNwLb0TCL8jlksMbj/14Prv1II=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1b1bdeac67f6b63a1a5527c4be3081ae7097f693",
+        "type": "github"
       },
       "original": {
         "id": "nixpkgs",
+        "ref": "master",
         "type": "indirect"
       }
     },
