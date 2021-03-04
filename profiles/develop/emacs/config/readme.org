@@ -136,6 +136,25 @@ rainbow-delimiters
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
+** TODO ghcid.el
+#+begin_src nix :noweb-ref emacs-package-in-let :tangle no
+  ghcid-el = epkgs.trivialBuild {
+    pname = "ghcid";
+    src = fetchurl {
+      url = "https://raw.githubusercontent.com/ndmitchell/ghcid/master/plugins/emacs/ghcid.el";
+      sha256 = "01n4fwqabx6jdyjqqi1hrpldaf28pib7zm4qcv99ghmrca6qk4xc";
+    };
+  };
+#+end_src
+
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+ghcid-el
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package app-launcher)
+#+end_src
 ** TODO real auto save mode
 ** TODO which key
 

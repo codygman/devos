@@ -5,10 +5,18 @@ final: prev: {
           package = prev.emacsGcc;
           emacsPackages = prev.emacsPackagesNgGen package;
           emacsWithPackages = emacsPackages.emacsWithPackages;
+          ghcid-el = epkgs.trivialBuild {
+            pname = "ghcid";
+            src = fetchurl {
+              url = "https://raw.githubusercontent.com/ndmitchell/ghcid/master/plugins/emacs/ghcid.el";
+              sha256 = "01n4fwqabx6jdyjqqi1hrpldaf28pib7zm4qcv99ghmrca6qk4xc";
+            };
+          };
         in emacsWithPackages (epkgs: with epkgs; [
           modus-operandi-theme
           modus-vivendi-theme
           rainbow-delimiters
+          ghcid-el
           which-key
           use-package
           evil
