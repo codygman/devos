@@ -32,7 +32,7 @@ See [[*app-launcher][app-launcher]] example
 
 https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs-modes/emacspeak/default.nix
 
-#+begin_src nix
+#+begin_src nix :tangle no
  stdenv, fetchurl, makeWrapper, emacs, tcl, tclx, espeak-ng, lib }:
 
 stdenv.mkDerivation rec {
