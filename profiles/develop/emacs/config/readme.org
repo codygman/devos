@@ -712,6 +712,7 @@ magit
   :prefix "SPC"
   "gs" 'magit-status
   "gd" 'magit-dispatch
+    "gl" 'magit-log
   )
 )
 #+end_src
