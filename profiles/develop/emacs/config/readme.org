@@ -20,6 +20,14 @@
 
 ** TODO searching for emacs packages available on nixpkgs
 
+** TODO installing emacs packages from github with nix
+
+*** trivial (no dependencies)
+
+See [[*app-launcher][app-launcher]] example
+
+*** TODO with dependencies
+
 * install emacs
 #+begin_src nix :noweb-ref emacs-system-dep :tangle no
 emacsGcc
