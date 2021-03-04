@@ -127,7 +127,7 @@ modus-vivendi-theme
           "wr" '(winner-redo :which-key "Winner Redo")
           ))
     #+end_src
-** TODO rainbow delimiters
+** rainbow delimiters
 #+begin_src nix :noweb-ref emacs-package :tangle no
 rainbow-delimiters
 #+end_src
