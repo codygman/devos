@@ -166,7 +166,7 @@ rainbow-delimiters
 ghcid-el
 #+end_src
 
-** TODO app-launcher
+** app-launcher
 #+begin_src nix :noweb-ref emacs-package-in-let :tangle no
   app-launcher = emacsPackages.trivialBuild {
     pname = "app-launcher";
