@@ -2,7 +2,7 @@ final: prev: {
 
       emacsGcc =
         let
-          package = prev.emacsGcc;
+          package = (prev.emacsGcc.override { withXwidgets = true;});
           emacsPackages = prev.emacsPackagesNgGen package;
           emacsWithPackages = emacsPackages.emacsWithPackages;
           app-launcher = emacsPackages.trivialBuild {
