@@ -193,6 +193,15 @@ rainbow-delimiters
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
+** TODO nix mode
+#+begin_src nix :noweb-ref emacs-package :tangle no
+nix-mode
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :mode "\\.nix\\'")
+#+end_src
 ** TODO ghcid.el
 :PROPERTIES:
 :header-args: :tangle no :noweb no
