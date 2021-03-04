@@ -1494,6 +1494,7 @@ final: prev: {
           package = prev.emacsGcc;
           emacsPackages = prev.emacsPackagesNgGen package;
           emacsWithPackages = emacsPackages.emacsWithPackages;
+          <<emacs-package-in-let>>
         in emacsWithPackages (epkgs: with epkgs; [
           <<emacs-package>>
         ]);
