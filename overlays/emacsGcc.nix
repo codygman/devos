@@ -5,18 +5,18 @@ final: prev: {
           package = prev.emacsGcc;
           emacsPackages = prev.emacsPackagesNgGen package;
           emacsWithPackages = emacsPackages.emacsWithPackages;
-          ghcid-el = epkgs.trivialBuild {
-            pname = "ghcid";
-            src = fetchurl {
-              url = "https://raw.githubusercontent.com/ndmitchell/ghcid/master/plugins/emacs/ghcid.el";
-              sha256 = "01n4fwqabx6jdyjqqi1hrpldaf28pib7zm4qcv99ghmrca6qk4xc";
+          app-launcher = emacsPackages.trivialBuild {
+            pname = "app-launcher";
+            src = prev.fetchurl {
+              url = "https://raw.githubusercontent.com/SebastienWae/app-launcher/master/app-launcher.el";
+              sha256 = "bA4d4DvBfobS+sZz6rfrYAVAX6ct8qqUO59LCghR+iQ=";
             };
           };
         in emacsWithPackages (epkgs: with epkgs; [
           modus-operandi-theme
           modus-vivendi-theme
           rainbow-delimiters
-          ghcid-el
+          app-launcher
           which-key
           use-package
           evil

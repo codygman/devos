@@ -137,10 +137,15 @@ rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
 ** TODO ghcid.el
-#+begin_src nix :noweb-ref emacs-package-in-let :tangle no
-  ghcid-el = epkgs.trivialBuild {
+:PROPERTIES:
+:header-args: :tangle no :noweb no
+:END:
+
+#+begin_src nix
+  # :noweb-ref emacs-package-in-let :tangle no
+  ghcid-el = emacsPackages.trivialBuild {
     pname = "ghcid";
-    src = fetchurl {
+    src = prev.fetchurl {
       url = "https://raw.githubusercontent.com/ndmitchell/ghcid/master/plugins/emacs/ghcid.el";
       sha256 = "01n4fwqabx6jdyjqqi1hrpldaf28pib7zm4qcv99ghmrca6qk4xc";
     };
@@ -151,6 +156,22 @@ rainbow-delimiters
 #+begin_src nix
 # :noweb-ref emacs-package :tangle no
 ghcid-el
+#+end_src
+
+** TODO app-launcher
+#+begin_src nix :noweb-ref emacs-package-in-let :tangle no
+  app-launcher = emacsPackages.trivialBuild {
+    pname = "app-launcher";
+    src = prev.fetchurl {
+      url = "https://raw.githubusercontent.com/SebastienWae/app-launcher/master/app-launcher.el";
+      sha256 = "bA4d4DvBfobS+sZz6rfrYAVAX6ct8qqUO59LCghR+iQ=";
+    };
+  };
+#+end_src
+
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+app-launcher
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1576,14 +1597,11 @@ exwm-edit
     #+begin_src emacs-lisp
       (use-package exwm
         :init
-        (defun codygman/run-external-command (command)
-            (interactive (list (read-shell-command "$ ")))
-            (start-process-shell-command command nil command))
         (setq exwm-input-global-keys
               `(([?\s-r] . exwm-reset)
                 ([?\s-i] . exwm-input-release-keyboard)
                 ;; convenience keybinding, meant to mimic `esc' in Vim bindings
-                ([?\s-\ ] . codygman/run-external-command)
+                ([?\s-\ ] . app-launcher-run-app)
                 ([?\s-\[] . exwm-reset)))
         (defun exwm-rename-buffer ()
           (interactive)
