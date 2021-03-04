@@ -20,6 +20,63 @@
 
 ** TODO searching for emacs packages available on nixpkgs
 
+** TODO installing emacs packages from github with nix
+
+*** trivial (no dependencies)
+
+See [[*app-launcher][app-launcher]] example
+
+*** TODO with dependencies
+
+*** TODO using make
+
+https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs-modes/emacspeak/default.nix
+
+#+begin_src nix :tangle no
+ stdenv, fetchurl, makeWrapper, emacs, tcl, tclx, espeak-ng, lib }:
+
+stdenv.mkDerivation rec {
+  pname = "emacspeak";
+  version = "51.0";
+
+  src = fetchurl {
+    url = "https://github.com/tvraman/emacspeak/releases/download/${version}/${pname}-${version}.tar.bz2";
+    sha256 = "09a0ywxlqa8jmc0wmvhaf7bdydnkyhy9nqfsdqcpbsgdzj6qpg90";
+  };
+
+  nativeBuildInputs = [ makeWrapper emacs ];
+  buildInputs = [ tcl tclx espeak-ng ];
+
+  preConfigure = ''
+    make config
+  '';
+
+  postBuild = ''
+    make -C servers/native-espeak PREFIX=$out "TCL_INCLUDE=${tcl}/include"
+  '';
+
+  postInstall = ''
+    make -C servers/native-espeak PREFIX=$out install
+    local d=$out/share/emacs/site-lisp/emacspeak/
+    install -d -- "$d"
+    cp -a .  "$d"
+    find "$d" \( -type d -or \( -type f -executable \) \) -execdir chmod 755 {} +
+    find "$d" -type f -not -executable -execdir chmod 644 {} +
+    makeWrapper ${emacs}/bin/emacs $out/bin/emacspeak \
+        --set DTK_PROGRAM "${espeak-ng}/bin/espeak" \
+        --add-flags '-l "${placeholder "out"}/share/emacs/site-lisp/emacspeak/lisp/emacspeak-setup.elc"'
+  '';
+
+  meta = {
+    homepage = "https://github.com/tvraman/emacspeak/";
+    description = "Emacs extension that provides spoken output";
+    license = lib.licenses.gpl2;
+    maintainers = [ ];
+    platforms = lib.platforms.linux;
+  };
+}
+#+end_src
+
 * install emacs
 #+begin_src nix :noweb-ref emacs-system-dep :tangle no
 emacsGcc
@@ -127,7 +184,7 @@ modus-vivendi-theme
           "wr" '(winner-redo :which-key "Winner Redo")
           ))
     #+end_src
-** TODO rainbow delimiters
+** rainbow delimiters
 #+begin_src nix :noweb-ref emacs-package :tangle no
 rainbow-delimiters
 #+end_src
@@ -136,6 +193,70 @@ rainbow-delimiters
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
+** TODO nix mode
+#+begin_src nix :noweb-ref emacs-package :tangle no
+nix-mode
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package nix-mode
+  :mode "\\.nix\\'")
+#+end_src
+** TODO investigate nix-emacs
+https://github.com/travisbhartwell/nix-emacs
+** TODO ghcid.el
+:PROPERTIES:
+:header-args: :tangle no :noweb no
+:END:
+
+#+begin_src nix
+  # :noweb-ref emacs-package-in-let :tangle no
+  ghcid-el = emacsPackages.trivialBuild {
+    pname = "ghcid";
+    src = prev.fetchurl {
+      url = "https://raw.githubusercontent.com/ndmitchell/ghcid/master/plugins/emacs/ghcid.el";
+      sha256 = "01n4fwqabx6jdyjqqi1hrpldaf28pib7zm4qcv99ghmrca6qk4xc";
+    };
+  };
+#+end_src
+
+
+#+begin_src nix
+# :noweb-ref emacs-package :tangle no
+ghcid-el
+#+end_src
+
+** app-launcher
+#+begin_src nix :noweb-ref emacs-package-in-let :tangle no
+  app-launcher = emacsPackages.trivialBuild {
+    pname = "app-launcher";
+    src = prev.fetchurl {
+      url = "https://raw.githubusercontent.com/SebastienWae/app-launcher/master/app-launcher.el";
+      sha256 = "bA4d4DvBfobS+sZz6rfrYAVAX6ct8qqUO59LCghR+iQ=";
+    };
+  };
+#+end_src
+
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+app-launcher
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package app-launcher)
+#+end_src
+
+** TODO enhanced emacs xwidgets browser
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+xwwp
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package xwwp-follow-link)
+#+end_src
+
+
 ** TODO real auto save mode
 ** TODO which key
 
@@ -1498,6 +1619,7 @@ final: prev: {
           package = prev.emacsGcc;
           emacsPackages = prev.emacsPackagesNgGen package;
           emacsWithPackages = emacsPackages.emacsWithPackages;
+          <<emacs-package-in-let>>
         in emacsWithPackages (epkgs: with epkgs; [
           <<emacs-package>>
         ]);
@@ -1556,14 +1678,11 @@ exwm-edit
     #+begin_src emacs-lisp
       (use-package exwm
         :init
-        (defun codygman/run-external-command (command)
-            (interactive (list (read-shell-command "$ ")))
-            (start-process-shell-command command nil command))
         (setq exwm-input-global-keys
               `(([?\s-r] . exwm-reset)
                 ([?\s-i] . exwm-input-release-keyboard)
                 ;; convenience keybinding, meant to mimic `esc' in Vim bindings
-                ([?\s-\ ] . codygman/run-external-command)
+                ([?\s-\ ] . app-launcher-run-app)
                 ([?\s-\[] . exwm-reset)))
         (defun exwm-rename-buffer ()
           (interactive)

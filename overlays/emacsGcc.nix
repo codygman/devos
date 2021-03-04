@@ -5,10 +5,20 @@ final: prev: {
           package = prev.emacsGcc;
           emacsPackages = prev.emacsPackagesNgGen package;
           emacsWithPackages = emacsPackages.emacsWithPackages;
+          app-launcher = emacsPackages.trivialBuild {
+            pname = "app-launcher";
+            src = prev.fetchurl {
+              url = "https://raw.githubusercontent.com/SebastienWae/app-launcher/master/app-launcher.el";
+              sha256 = "bA4d4DvBfobS+sZz6rfrYAVAX6ct8qqUO59LCghR+iQ=";
+            };
+          };
         in emacsWithPackages (epkgs: with epkgs; [
           modus-operandi-theme
           modus-vivendi-theme
           rainbow-delimiters
+          nix-mode
+          app-launcher
+          xwwp
           which-key
           use-package
           evil
