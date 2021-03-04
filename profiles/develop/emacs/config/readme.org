@@ -202,6 +202,8 @@ nix-mode
 (use-package nix-mode
   :mode "\\.nix\\'")
 #+end_src
+** TODO investigate nix-emacs
+https://github.com/travisbhartwell/nix-emacs
 ** TODO ghcid.el
 :PROPERTIES:
 :header-args: :tangle no :noweb no
