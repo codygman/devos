@@ -269,7 +269,7 @@ which-key
 #+end_src
 
 #+begin_src emacs-lisp
-  (use-package which-key :config (which-key-mode))
+  (use-package which-key :config (which-key-mode) :diminish t)
 #+end_src
 
 *** TODO actually show it in consult with [[*marginala][marginala]]
@@ -1518,6 +1518,7 @@ https://github.com/org-roam/org-roam-server
 
       ;; TODO move company to own block
       (use-package company
+        :diminish t
         :config
         (setq company-minimum-prefix-length 1
               company-idle-delay 0.4
