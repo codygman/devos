@@ -1878,6 +1878,8 @@ https://hackage.haskell.org/package/lens-csv
   (tab-bar-new-tab)
   (my/erc-start-or-switch)
   (tab-bar-rename-tab "*irc*")
+  (sit-for 1)
+  (my/erc-start-or-switch)
 
   (tab-bar-switch-to-tab "*main*")
 #+end_src
