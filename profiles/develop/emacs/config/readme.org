@@ -157,10 +157,10 @@ modus-vivendi-theme
 ** line numbers
 *** turn on line numbers globally
 #+begin_src emacs-lisp
-(global-display-line-numbers-mode t)
+(global-display-line-numbers-mode 0)
 #+end_src
 *** disable for some modes
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
   (dolist (mode '(org-mode-hook
                   term-mode-hook
                   shell-mode-hook
