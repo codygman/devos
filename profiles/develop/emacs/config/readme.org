@@ -681,7 +681,7 @@ For some reason Marginalia doesn't even load... not sure why. I bet it's because
     (interactive)
     (save-excursion
       ;; I got a weird error where after this happend I couldn't capture correctly to journal
-      ;; Error running timer ‘kill-gpg-buffers’: (error "Marker does not point anywhere")
+      ;; Error running timer `kill-gpg-buffers (error "Marker does not point anywhere")
       ;; then after that when I did =SPC o j= I got:
       ;; org-datetree--find-create: Buffer is read-only: #<buffer *Messages*>
       ;; It tries to create a datetree in the *Messages* buffer???
