@@ -12,6 +12,14 @@ final: prev: {
               sha256 = "bA4d4DvBfobS+sZz6rfrYAVAX6ct8qqUO59LCghR+iQ=";
             };
           };
+          gh-notify = emacsPackages.trivialBuild {
+            pname = "gh-notify";
+            packageRequires = [ emacsPackages.magit emacsPackages.forge ];
+            src = prev.fetchurl {
+              url = "https://raw.githubusercontent.com/anticomputer/gh-notify/3e2f7b8e4804e1edb1b2464cea671cedbbd95424/gh-notify.el";
+              sha256 = "03ikgzc67n5jkrf231zdnrc58kpv5ibdh36phzha9fw8nm0yasl4";
+            };
+          };
         in emacsWithPackages (epkgs: with epkgs; [
           modus-operandi-theme
           modus-vivendi-theme
@@ -64,6 +72,9 @@ final: prev: {
           elfeed-dashboard
           elfeed-score
           magit
+          github-review
+          forge
+          gh-notify
           esh-autosuggest
           fish-completion
           ( keyfreq.override (args: {

@@ -853,7 +853,11 @@ I'll just generally fix this in [[*make working with images in org mode nice][ma
     enable = true;
     userName = "codygman";
     userEmail = "cody@codygman.dev";
-
+    extraConfig = {
+      github = {
+        user = "codygman";
+      };
+    };
     aliases = {
       a = "add -p";
       co = "checkout";
@@ -1024,6 +1028,55 @@ foo
 
 ** TODO make sure text from native X11 applications gets inserted into kill ring
    There is a simple variable we can set that just makes this work IIRC
+
+* TODO github code reviews in emacs :superpower:
+
+** TODO use-package
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+github-review
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package github-review)
+#+end_src
+
+** TODO get listing with forge
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+forge
+#+end_src
+
+
+#+begin_src emacs-lisp
+  (use-package forge
+    :after magit
+    :config
+  )
+#+end_src
+
+** TODO get fast notifications with gh-notify
+
+https://github.com/anticomputer/gh-notify
+
+When I added this I got some nix cache erros... not sure if I did something wrong or those were just transient
+
+#+begin_src nix :noweb-ref emacs-package-in-let :tangle no
+  gh-notify = emacsPackages.trivialBuild {
+    pname = "gh-notify";
+    packageRequires = [ emacsPackages.magit emacsPackages.forge ];
+    src = prev.fetchurl {
+      url = "https://raw.githubusercontent.com/anticomputer/gh-notify/3e2f7b8e4804e1edb1b2464cea671cedbbd95424/gh-notify.el";
+      sha256 = "03ikgzc67n5jkrf231zdnrc58kpv5ibdh36phzha9fw8nm0yasl4";
+    };
+  };
+#+end_src
+
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+gh-notify
+#+end_src
+
 
 * TODO indirect buffer based workflows                           :superpower:
 
