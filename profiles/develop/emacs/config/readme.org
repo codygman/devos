@@ -1844,7 +1844,7 @@ https://hackage.haskell.org/package/lens-csv
 #+begin_src emacs-lisp
   (use-package erc
     :custom
-    (erc-autojoin-channels-alist '(("freenode.net" "#test23434")))
+    (erc-autojoin-channels-alist '(("freenode.net" "#haskell" "#nixos" "#haskell-lens" "#nixos-emacs")))
     (erc-autojoin-timing 'connect)
     (erc-fill-function 'erc-fill-static)
     (erc-fill-static-center 22)
