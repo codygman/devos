@@ -97,6 +97,7 @@ final: prev: {
           #company
           exwm
           exwm-edit
+          evil-org
         ]);
 
 }

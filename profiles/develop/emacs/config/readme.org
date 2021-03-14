@@ -1,6 +1,5 @@
 #+PROPERTY: header-args :results silent :tangle yes
 
-
 * common tasks
 ** switch to current configuration
 
@@ -930,6 +929,86 @@ I find myself wanting this all the time... though I should also make magit-dispa
 
 Isn't there something else I'm always pressing in magit buffers expecting to work??
 
+* TODO rougier org gtd
+*** basic setup
+
+#+begin_src emacs-lisp :tangle no :noweb-ref org-agenda-init
+  (setq org-directory "~/gtd-rouge")
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "MYBE(m)" "WAIT(w)" "|"
+                    "DONE(f)" "KILL(k)" "STUCK(s)")))
+  (message "about to set files")
+  (setq org-agenda-files (list "~/gtd-rouge/inbox.org")) ;; doesn't seem to use org-directory and work with relative file paths :/
+#+end_src
+*** TODO setup glib or w/e notifications to get rid of error when past time estimate
+*** TODO setup spell checking/install ispell
+*** TODO use diminish by default on all packages
+*** add capture templates
+**** capture to inbox 
+#+begin_src emacs-lisp :noweb-ref org-capture-config :tangle no
+(add-to-list 'org-capture-templates
+                 '("i" "Inbox"
+                                   entry (file "~/gtd-rouge/inbox.org")
+                                   "* TODO %?\n%U\n\n  %i\n  %a"
+                                   :kill-buffer t))
+#+end_src
+
+
+#+begin_src emacs-lisp :tangle no :noweb-ref org-agenda-config
+  (defun codygman/org-gtd-capture-inbox ()
+    (interactive)
+    (org-capture nil "i"))
+(defun codygman/org-agenda-all-todos ()
+    (interactive)
+    (org-agenda nil "t"))
+#+end_src
+
+#+begin_src emacs-lisp :noweb-ref org-agenda-keybinds
+  "oc"  '(codygman/org-gtd-capture-inbox :which-key "capture directly to inbox")
+#+end_src
+**** TODO working with mail
+
+I don't have mail setup yet
+*** make agenda easily accessible
+
+#+begin_src emacs-lisp :noweb-ref org-agenda-keybinds
+  "oA"  '(org-agenda :which-key "org agenda")
+  "ot"  '(codygman/org-agenda-all-todos :which-key "org agenda all todos")
+#+end_src
+*** make agenda nicer looking
+#+begin_src emacs-lisp :tangle no :noweb-ref org-agenda-config
+  (setq org-agenda-hide-tags-regexp ".")
+(setq org-agenda-prefix-format
+      '((agenda . " %i %-12:c%?-12t% s")
+        (todo   . " ")
+        (tags   . " %i %-12:c")
+        (search . " %i %-12:c")))
+#+end_src
+*** add inbox capture template
+
+#+begin_src emacs-lisp :tangle no
+  (add-to-list 'org-capture-templates
+                 '("i" "Inbox"
+                                   entry (file "/home/cody/gtd/inbox.org")
+                                   "* %?\n%U\n\n  %i"
+                                   :kill-buffer t))
+#+end_src
+*** gtd workflow keybinds
+**** capture to inbox =SPC o c=
+
+**** process inbox: =SPC o p=
+#+begin_src emacs-lisp  :tangle no
+  "op"  '(org-gtd-process-inbox :which-key "org-gtd-process-inbox")
+#+end_src
+**** finalize item: =SPC o f= or =C-c c=
+#+begin_src emacs-lisp :tangle no
+  "of"  '(org-gtd-clarify-finalize :which-key "org-gtd-clarify-finalize")
+#+end_src
+**** show next items: =SPC o n=
+#+begin_src emacs-lisp :tangle no
+  "on"  '(org-gtd-show-all-next :which-key "org-gtd-show-all-next")
+#+end_src
+
 * TODO fuzzy paste buffer history                    :superpower:
 
 ** description/hype
@@ -1086,9 +1165,21 @@ This might seem simple or not super useful, but for some reason it's very powerf
 
 ** TODO bind org-tree-to-indirect-buffer to =SPC o i=
 
-#+begin_src emacs-lisp :noweb-ref consult-keybinds
+#+begin_src emacs-lisp :noweb-ref org-keybinds
   "oi"  '(org-tree-to-indirect-buffer :which-key "org-tree-to-indirect-buffer")
 #+end_src
+
+** make org-tree-to-indirect-buffer where that indirect buffers are kept
+
+I don't mind a "proliferation of indirect buffers" ;)
+
+By default org keeps buffers if you send the universal argument, so we'll have to send it by default:
+
+#+begin_src emacs-lisp :noweb-ref org-config
+(defun codygman/org-tree-to-indirect-buffer ()
+  (execute-extended-command 4 "org-tree-to-indirect-buffer") )
+#+end_src
+
 
 * TODO auto-identify code pasted into org document and put in source block
 * TODO "your code as a crime scene" interactively               :superpower:
@@ -1916,7 +2007,6 @@ browser.link.open_newwindow.restriction
           :keymaps 'override
           :non-normal-prefix "M-SPC"
           :prefix "SPC"
-          "oc" '(org-capture :wk "org capture")
           <<org-capture-keybinds>>
           )
         :config
@@ -1926,6 +2016,45 @@ browser.link.open_newwindow.restriction
         <<org-capture-config>>
         )
     #+end_src
+
+    #+begin_src emacs-lisp :noweb yes
+            (use-package org-agenda
+              :init
+              <<org-agenda-init>>
+              :config
+              <<org-agenda-config>>
+              ;; use as-is if you don't have an existing org-agenda setup
+              ;; otherwise push the directory to the existing list
+        :general
+        (my-leader-def
+          :states '(normal visual emacs motion)
+          :prefix "SPC"
+          :keymaps 'override
+          :non-normal-prefix "M-SPC"
+          :prefix "SPC"
+          "oC" '(org-capture :wk "org capture")
+          <<org-agenda-keybinds>>
+          )
+      )
+
+    #+end_src
+
+
+** evil org agenda
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+evil-org
+#+end_src
+
+#+begin_src emacs-lisp :noweb yes
+(use-package evil-org
+  :after org
+  :hook (org-mode . (lambda () evil-org-mode))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+  #+end_src
+>>>>>>> Stashed changes
 ** epa (gpg)
 
     #+begin_src emacs-lisp :noweb yes
