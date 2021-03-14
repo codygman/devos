@@ -940,7 +940,7 @@ Isn't there something else I'm always pressing in magit buffers expecting to wor
   (setq org-directory "~/gtd-rouge")
   (setq org-todo-keywords
         '((sequence "TODO(t)" "MYBE(m)" "WAIT(w)" "|"
-                    "DONE(f)" "KILL(k)" "STUCK(s)")))
+                    "DONE(d)" "KILL(k)" "STUCK(s)")))
   (message "about to set files")
   (setq org-agenda-files (list "~/gtd-rouge/inbox.org")) ;; doesn't seem to use org-directory and work with relative file paths :/
 #+end_src
@@ -976,12 +976,13 @@ I don't have mail setup yet
 *** make agenda easily accessible
 
 #+begin_src emacs-lisp :noweb-ref org-agenda-keybinds
-  "oA"  '(org-agenda :which-key "org agenda")
+  "oa"  '(org-agenda :which-key "org agenda")
+  "om"  '((lambda () (interactive) (org-agenda nil "m")) :which-key "org agenda")
   "ot"  '(codygman/org-agenda-all-todos :which-key "org agenda all todos")
 #+end_src
 *** make agenda nicer looking
 #+begin_src emacs-lisp :tangle no :noweb-ref org-agenda-config
-;; (setq org-agenda-hide-tags-regexp ".")
+(setq org-agenda-hide-tags-regexp nil)
 (setq org-agenda-prefix-format
       '((agenda . " %i %-12:c%?-12t% s")
         (todo   . " ")
