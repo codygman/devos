@@ -673,24 +673,32 @@ For some reason Marginalia doesn't even load... not sure why. I bet it's because
 
 ** close all gpg buffers after 1 minute of idle time
 #+begin_src emacs-lisp :noweb-ref epa-init :tangle no
-(defun kill-gpg-buffers ()
-  "Kill GPG buffers."
-  (interactive)
-  (let ((buffers-killed 0))
-    (dolist (buffer (buffer-list))
-      (with-current-buffer buffer
-        (when (string-match ".*\.gpg$" (buffer-name buffer))
-          (message "Auto killing .gpg buffer '%s'" (buffer-name buffer))
-          (when (buffer-modified-p buffer)
-            (save-buffer))
-          (kill-buffer buffer)
-          (setq buffers-killed (+ buffers-killed 1)))))
-    (unless (zerop buffers-killed)
-      ;; Kill gpg-agent.
-      (shell-command "gpgconf --kill gpg-agent")
-      (message "%s .gpg buffers have been autosaved and killed" buffers-killed))))
+  (defun kill-gpg-buffers ()
+    "Kill GPG buffers."
+    (interactive)
+    (save-excursion
+      ;; I got a weird error where after this happend I couldn't capture correctly to journal
+      ;; Error running timer ‘kill-gpg-buffers’: (error "Marker does not point anywhere")
+      ;; then after that when I did =SPC o j= I got:
+      ;; org-datetree--find-create: Buffer is read-only: #<buffer *Messages*>
+      ;; It tries to create a datetree in the *Messages* buffer???
+      ;; then I cannot open the file ~/org/journal.org.gpg
+      ;; if I kill whatever buffer that was... the one I ran =SPC o j= from... then things are fixed
+      (let ((buffers-killed 0))
+        (dolist (buffer (buffer-list))
+          (with-current-buffer buffer
+            (when (string-match ".*\.gpg$" (buffer-name buffer)) ;; maybe this check isn't enough alone?
+              (message "Auto killing .gpg buffer '%s'" (buffer-name buffer))
+              (when (buffer-modified-p buffer)
+                (save-buffer))
+              (kill-buffer buffer)
+              (setq buffers-killed (+ buffers-killed 1)))))
+        (unless (zerop buffers-killed)
+          ;; Kill gpg-agent.
+          (shell-command "gpgconf --kill gpg-agent")
+          (message "%s .gpg buffers have been autosaved and killed" buffers-killed)))))
 
-(run-with-idle-timer 60 t 'kill-gpg-buffers)
+  (run-with-idle-timer 60 t 'kill-gpg-buffers)
 #+end_src
 
 
