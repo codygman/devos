@@ -1863,6 +1863,7 @@ https://hackage.haskell.org/package/lens-csv
                                "324" "329" "332" "333" "353" "477"))
      (erc-log-channels-directory "~/.erc/logs")
      (erc-enable-logging 'erc-log-all-but-server-buffers)
+     (erc-log-insert-log-on-open t)
      (erc-generate-log-file-name-function 'erc-generate-log-file-name-with-date)
       (erc-save-buffer-on-part nil)
       (erc-save-queries-on-quit nil)
