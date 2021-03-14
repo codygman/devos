@@ -18,6 +18,9 @@ in
   # TODO does this really belong here??
   services.xrdp.enable = true;
 
+
+  home-manager.users.cody.services.dunst.enable = true;
+
   services.xrdp.defaultWindowManager = "emacs";
 
   networking.firewall.allowedTCPPorts = [ 3389 ];
