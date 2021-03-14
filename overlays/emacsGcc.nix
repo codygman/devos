@@ -58,6 +58,11 @@ final: prev: {
                   };
                 });
               }) )
+          elfeed
+          elfeed-goodies
+          elfeed-org
+          elfeed-dashboard
+          elfeed-score
           magit
           esh-autosuggest
           fish-completion

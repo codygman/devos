@@ -790,6 +790,56 @@ I'll just generally fix this in [[*make working with images in org mode nice][ma
 #+end_src
 
 * TODO which-key
+
+* TODO elfeed
+
+** TODO bindings
+
+** TODO use-package
+
+  #+begin_src nix :noweb-ref emacs-package :tangle no
+  elfeed
+  #+end_src
+
+  #+begin_src emacs-lisp
+    (use-package elfeed
+     )
+  #+end_src
+
+*** TODO pull out pieces into noweb templates?
+
+** TODO elfeed-goodies
+
+  #+begin_src nix :noweb-ref emacs-package :tangle no
+  elfeed-goodies
+  #+end_src
+
+** TODO elfeed-org?
+
+  #+begin_src nix :noweb-ref emacs-package :tangle no
+  elfeed-org
+  #+end_src
+
+  #+begin_src emacs-lisp
+    (use-package elfeed-org
+      :config 
+      (setq rmh-elfeed-org-files (list "~/Sync/rss.org"))
+      (elfeed-org)
+      )
+  #+end_src
+
+** TODO elfeed-dashboard
+
+  #+begin_src nix :noweb-ref emacs-package :tangle no
+  elfeed-dashboard
+  #+end_src
+
+** TODO elfeed-score
+
+  #+begin_src nix :noweb-ref emacs-package :tangle no
+  elfeed-score
+  #+end_src
+
 * magit 
 ** configure git nix module
    
