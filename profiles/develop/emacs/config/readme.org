@@ -1837,7 +1837,61 @@ https://hackage.haskell.org/package/lens-csv
    https://search.nixos.org/packages?channel=20.09&show=bitlbee-discord&from=0&size=30&sort=relevance&query=bitlbee
 
 ** TODO signal?
-* TODO try elfeed (and rss in general) out
+* TODO autojoin irc
+
+** TODO use-package
+
+#+begin_src emacs-lisp
+  (use-package erc
+    :custom
+    (erc-autojoin-channels-alist '(("freenode.net" "#test23434")))
+    (erc-autojoin-timing 'connect)
+    (erc-fill-function 'erc-fill-static)
+    (erc-fill-static-center 22)
+    ;; don't let joining irc buffer steal focus
+    ;; (erc-join-buffer 'window-noselect) ;; I think this is right
+    (erc-join-buffer 'bury) ;; I think this is right
+    (erc-hide-list '("JOIN" "PART" "QUIT"))
+    (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+    (erc-lurker-threshold-time 43200)
+    (erc-prompt-for-nickserv-password nil)
+    (erc-server-reconnect-attempts 5)
+    (erc-server-reconnect-timeout 3)
+    (erc-track-exclude-types '("JOIN" "MODE" "NICK" "PART" "QUIT"
+                               "324" "329" "332" "333" "353" "477"))
+    :config
+    (defun my/erc-start-or-switch ()
+      "Connects to ERC, or switch to last active buffer."
+      (interactive)
+      (if (get-buffer "irc.freenode.net:6667")
+          (erc-track-switch-buffer 1)
+        (erc :server "irc.freenode.net" :port 6667 :nick "codygman__")))
+    ;; (add-to-list 'erc-modules 'notifications)
+    ;; (add-to-list 'erc-modules 'spelling)
+    (erc-services-mode 1)
+    (erc-update-modules))
+#+end_src
+
+#+begin_src emacs-lisp
+  (tab-bar-rename-tab "*main*")
+
+  (tab-bar-new-tab)
+  (my/erc-start-or-switch)
+  (tab-bar-rename-tab "*irc*")
+
+  (tab-bar-switch-to-tab "*main*")
+#+end_src
+
+** TODO unobtrusively setup *irc* tab on server join
+
+I'd like to be able to switch to the *irc* tab and have at least some if not all windows visible... but since I'm not sure when each will join I'm not sure how to lay them out...
+
+or say "split-window" then switch to buffer named this
+
+actually yeah that'll work lol
+
+see erc-server-JOIN-functions
+
 * Weave/tangle nix overlays and emacs module
 ** tangle overlay with emacs packages
 
