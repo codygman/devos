@@ -981,7 +981,7 @@ I don't have mail setup yet
 #+end_src
 *** make agenda nicer looking
 #+begin_src emacs-lisp :tangle no :noweb-ref org-agenda-config
-  (setq org-agenda-hide-tags-regexp ".")
+;; (setq org-agenda-hide-tags-regexp ".")
 (setq org-agenda-prefix-format
       '((agenda . " %i %-12:c%?-12t% s")
         (todo   . " ")
