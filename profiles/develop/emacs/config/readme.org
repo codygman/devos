@@ -1902,6 +1902,9 @@ https://hackage.haskell.org/package/lens-csv
     )
 #+end_src
 
+
+** TODO make erc only notify when my nick is tagged
+
 ** TODO unobtrusively setup *irc* tab on server join
 
 I'd like to be able to switch to the *irc* tab and have at least some if not all windows visible... but since I'm not sure when each will join I'm not sure how to lay them out...
