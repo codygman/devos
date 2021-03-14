@@ -3,7 +3,11 @@
     enable = true;
     userName = "codygman";
     userEmail = "cody@codygman.dev";
-
+    extraConfig = {
+      github = {
+        user = "codygman";
+      };
+    };
     aliases = {
       a = "add -p";
       co = "checkout";
