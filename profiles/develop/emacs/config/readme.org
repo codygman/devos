@@ -636,6 +636,12 @@ For some reason Marginalia doesn't even load... not sure why. I bet it's because
                  (file+datetree "~/org/journal.org.gpg") "* %?\nEntered on %U\n  %i\n  %a"))
 #+end_src
 
+** fullscreen for journal entry and org-capture in general
+#+begin_src emacs-lisp :noweb-ref org-capture-config :tangle no
+(add-hook 'org-capture-mode-hook 'delete-other-windows)
+#+end_src
+
+** fullscreen for journal entry and org-capture in general
 
 ** define function to call capture template programatically
 
