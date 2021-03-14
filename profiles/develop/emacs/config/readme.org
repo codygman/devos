@@ -550,6 +550,8 @@ consult-flycheck
     :keymaps 'override
     :non-normal-prefix "M-SPC"
     "bb"  '(consult-buffer :which-key "consult-buffer")
+    ;; TODO this one doesn't belong here really
+    "bl" 'list-buffers
     "br"  '(consult-recent-file :which-key "consult-recent-file")
     "ss"  '(consult-line :which-key "consult-line")
     <<consult-keybinds>>
