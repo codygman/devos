@@ -509,6 +509,10 @@ consult-flycheck
     }) )
 #+end_src
 
+=NOTE= need to test that works fine on login when readme.el isn't present yet **IMPORTANT**
+
+The hook was failing for adding lexical-binding.
+
 #+begin_src emacs-lisp :noweb yes
   (use-package projectile) ;; TODO see if I can replace consult projectile dependencies with project.el
   (use-package consult
