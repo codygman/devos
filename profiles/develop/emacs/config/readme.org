@@ -2058,7 +2058,6 @@ evil-org
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
   #+end_src
->>>>>>> Stashed changes
 ** epa (gpg)
 
     #+begin_src emacs-lisp :noweb yes
@@ -2102,6 +2101,30 @@ evil-org
                (cons nil '(add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Tangle?")(org-babel-tangle))) nil t))
                ))
 #+end_src
+** TODO look into faster alternatives for tangling
+
+Worgle is best candidate:
+
+https://github.com/paulbatchelor/worgle
+
+Simple C program, is it on nix packages?
+
+https://www.reddit.com/r/orgmode/comments/9kp8pq/a_faster_way_to_tangle_orgmode_a_command_line/
+
+https://www.reddit.com/r/orgmode/comments/75r7eg/orgbabeltangle_painfully_slow/
+
+(404, maybe findable) https://github.com/xieyuheng/org-rs/tree/master/org-tangle
+
+** TODO only tangle if edit occurs in babel elisp source block or nix block?
+
+This is probably a project in it's own right that would require hashing all contents of all babel and nix source blocks, saving the checksum, then comparing current checksums on each save.
+
+Or (faster, less reliable) doing it in the background with a timer, and at the time of save compare a global variable the timer code is leaving as "not modified" or flagging as "modified".
+
+** TODO don't start an eshell if the tangle happens from saving readme.org
+
+Set some global variable like =tangled-from-config-save= to true and then guard our eshell block with =when (not tangled-from-config-save)= 
+
 ** the local variables
 # Local Variables:
 # eval: (add-hook 'after-save-hook (lambda ()(if (y-or-n-p "Reload?")(load-file user-init-file))) nil t) 
