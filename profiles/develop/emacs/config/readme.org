@@ -1873,15 +1873,20 @@ https://hackage.haskell.org/package/lens-csv
 #+end_src
 
 #+begin_src emacs-lisp
-  (tab-bar-rename-tab "*main*")
+  (when (not (tab-bar--tab-index-by-name "*irc*" (funcall tab-bar-tabs-function))) ;; hacky, but for now just keep this as last tab created to detect if we're at startup
 
-  (tab-bar-new-tab)
-  (my/erc-start-or-switch)
-  (tab-bar-rename-tab "*irc*")
-  (sit-for 1)
-  (my/erc-start-or-switch)
+    (when (not (tab-bar--tab-index-by-name "*main*" (funcall tab-bar-tabs-function)))
+      ;; TODO also check for index 0 here
+      (tab-bar-rename-tab "*main*"))
 
-  (tab-bar-switch-to-tab "*main*")
+    (tab-bar-new-tab)
+    (my/erc-start-or-switch)
+    (tab-bar-rename-tab "*irc*")
+    (sit-for 1)
+    (my/erc-start-or-switch)
+
+    (tab-bar-switch-to-tab "*main*")
+    )
 #+end_src
 
 ** TODO unobtrusively setup *irc* tab on server join
