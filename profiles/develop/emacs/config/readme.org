@@ -1939,6 +1939,8 @@ final: prev: {
 
 * "boot" into eshell
  #+BEGIN_SRC emacs-lisp
+   ;; TODO check that an eshell doesn't already exist
+   ;; as a poor mans "are we at startup" check
    (eshell)
  #+end_src
 
