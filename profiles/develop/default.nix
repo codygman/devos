@@ -13,7 +13,7 @@
 
   environment.sessionVariables = {
     PAGER = "less";
-    EDITOR = "emacs";
+    EDITOR = "emacsclient -t -a=\"\"";
     VISUAL = "emacs";
   };
 
