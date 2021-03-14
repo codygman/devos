@@ -2,6 +2,13 @@
 
   imports = [ ./haskell ./emacs ];
 
+  security.pam.loginLimits = [{
+    domain = "*";
+    type = "soft";
+    item = "nofile";
+    value = "99999"; # is this high a good idea?
+  }];
+
   environment.shellAliases = { v = "$EDITOR"; };
 
   environment.sessionVariables = {
