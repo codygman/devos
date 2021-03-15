@@ -1,7 +1,7 @@
 { ... }:
 {
   home-manager.users.cody = {
-    imports = [ ../profiles/git ../profiles/direnv ];
+    imports = [ ../profiles/git ../profiles/direnv ../profiles/mail ../profiles/gpg ];
   };
 
   users.users.cody = {
@@ -9,7 +9,8 @@
     password = "cody";
     description = "default";
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    # TODO shouldn't have to manually add networkmanager group
+    extraGroups = [ "wheel" "docker" "networkmanager"];
   };
 
 

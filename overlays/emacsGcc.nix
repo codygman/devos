@@ -75,6 +75,7 @@ final: prev: {
           github-review
           forge
           gh-notify
+          notmuch
           esh-autosuggest
           fish-completion
           ( keyfreq.override (args: {

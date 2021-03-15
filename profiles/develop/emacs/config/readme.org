@@ -1162,6 +1162,16 @@ gh-notify
 #+end_src
 
 
+* TODO email in emacs                                            :superpower:
+
+
+#+begin_src nix :noweb-ref emacs-system-dep :tangle no
+mu
+#+end_src
+
+#+begin_src nix :noweb-ref emacs-package :tangle no
+  notmuch
+#+end_src
 * TODO indirect buffer based workflows                           :superpower:
 
 Indirect buffers let you turn an org heading into a buffer of it's own, while ensuring any modifications go into the main file.
