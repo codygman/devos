@@ -1,4 +1,4 @@
-{ suites, ... }:
+{ suites, pkgs, ... }:
 {
   ### root password is empty by default ###
   imports = suites.remotedev ++ [ ./razer-hardware-configuration.nix ];
