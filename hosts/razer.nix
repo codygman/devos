@@ -8,7 +8,16 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "razer"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    packages = [ pkgs.networkmanager_openvpn ];
+  };
+
+  programs.nm-applet = {
+    indicator = true;
+    enable = true;
+  };
+
   networking.useDHCP = false;
   networking.interfaces.wlp2s0.useDHCP = true;
 
