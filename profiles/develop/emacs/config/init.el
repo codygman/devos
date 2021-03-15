@@ -1,5 +1,6 @@
 (require 'org)
 (require 'f)
+(setq debug-on-error t)
 (defun add-tangle-headers ()
     (message "adding tangle headers in %s" (buffer-file-name))
     (cond
@@ -16,6 +17,9 @@
 
 ;; TODO don't hardcode this m8
 (org-babel-load-file "/home/cody/.emacs.d/readme.org")
+
+(setq debug-on-error nil)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
