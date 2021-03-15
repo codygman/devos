@@ -9,7 +9,8 @@
     password = "cody";
     description = "default";
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    # TODO shouldn't have to manually add networkmanager group
+    extraGroups = [ "wheel" "docker" "networkmanager"];
   };
 
 

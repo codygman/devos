@@ -9,6 +9,10 @@
     enable = true;
     packages = [ pkgs.networkmanager_openvpn ];
   };
-  
+
+  programs.nm-applet = {
+    indicator = true;
+    enable = true;
+  };
 
 }
