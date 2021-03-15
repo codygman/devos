@@ -23,5 +23,6 @@ in
 
     overrideModulesPath = "${override}/nixos/modules";
     hardware = nixos-hardware.nixosModules;
+    easy-hls-nix = easy-hls-nix.defaultPackage.x86_64-linux;
   };
 }

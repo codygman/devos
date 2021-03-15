@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, easy-hls-nix, ... }:
 let
   inherit (pkgs) ghc;
 in
@@ -10,7 +10,7 @@ in
         cabal-install
         implicit-hie
         hie-bios
-        haskell-language-server # caused segfault?
+        easy-hls-nix
         stack
       ])
     )

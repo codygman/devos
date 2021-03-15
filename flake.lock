@@ -72,6 +72,24 @@
         "type": "github"
       }
     },
+    "easy-hls-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1615701211,
+        "narHash": "sha256-S5/eFiSsXhfWk4yNOAN3QE+UACzQ+ak7yuSGNlkvGvI=",
+        "owner": "jkachmar",
+        "repo": "easy-hls-nix",
+        "rev": "cf0cb016e1c57934592fd4c9d07d6b7a67d3f6ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jkachmar",
+        "repo": "easy-hls-nix",
+        "type": "github"
+      }
+    },
     "emacs-overlay": {
       "locked": {
         "lastModified": 1615594909,
@@ -206,6 +224,21 @@
         "type": "indirect"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1615055905,
+        "narHash": "sha256-Ig7CXgE5C3mwtTVBl8nSTessa1oMAm6Pm/p+T6iAJD8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f3fc074642a25ef5a1423412f09946149237e338",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "locked": {
         "lastModified": 1615689807,
@@ -256,6 +289,7 @@
         "ci-agent": "ci-agent",
         "deploy": "deploy",
         "devshell": "devshell",
+        "easy-hls-nix": "easy-hls-nix",
         "emacs-overlay": "emacs-overlay",
         "flake-compat": "flake-compat",
         "home": "home",

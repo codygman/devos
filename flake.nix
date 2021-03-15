@@ -25,6 +25,7 @@
       flake-compat.url = "github:BBBSnowball/flake-compat/pr-1";
       flake-compat.flake = false;
       srcs.url = "path:./pkgs";
+      easy-hls-nix.url = "github:jkachmar/easy-hls-nix";
     };
 
   outputs =
@@ -35,6 +36,7 @@
     , home
     , nixos
     , nixos-hardware
+    , easy-hls-nix
     , nur
     , override
     , self
