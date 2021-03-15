@@ -1,7 +1,7 @@
 { ... }:
 {
   home-manager.users.cody = {
-    imports = [ ../profiles/git ../profiles/direnv ];
+    imports = [ ../profiles/git ../profiles/direnv  ../profiles/gpg ];
   };
 
   users.users.cody = {
