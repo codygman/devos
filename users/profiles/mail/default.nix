@@ -3,7 +3,7 @@
     mbsync.enable = true;
     msmtp.enable = true;
     notmuch = {
-      enable = true;
+      enable = false;
       hooks = {
         preNew = "mbsync --all";
       };
