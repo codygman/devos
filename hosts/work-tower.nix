@@ -5,6 +5,7 @@
   ] ++ suites.remotedev;
 
 
+  networking.hostName = "work-tower"; # Define your hostname.
   networking.networkmanager = {
     enable = true;
     packages = [ pkgs.networkmanager_openvpn ];
