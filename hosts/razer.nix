@@ -33,6 +33,10 @@
   location.latitude = 32.7767;
   location.longitude = -96.7970;
 
+  services.logind = {
+    lidSwitch = "suspend";
+  };
+
   services.redshift = {
     enable = true;
     brightness = {
