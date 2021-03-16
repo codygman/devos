@@ -17,7 +17,6 @@
       nixFlakes
       qutebrowser
       signal-desktop
-      haskell-language-server
       spotifyd
       starship;
 

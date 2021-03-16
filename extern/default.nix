@@ -15,6 +15,9 @@ in
     (final: prev: {
       deploy-rs = deploy.packages.${prev.system}.deploy-rs;
     })
+    (final: prev: {
+      haskell-language-server = easy-hls-nix.packages.x86_64-linux.haskell-language-server;
+    })
   ];
 
   # passed to all nixos modules
