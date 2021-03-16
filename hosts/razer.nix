@@ -34,7 +34,7 @@
   location.longitude = -96.7970;
 
   services.logind = {
-    lidSwitch = "suspend";
+    lidSwitch = "suspend-then-hibernate";
   };
 
   services.redshift = {
